@@ -48,6 +48,11 @@ const App = () => {
     console.log(window.localStorage)
   }
 
+  const handleAdd = e => {
+    e.preventDefault()
+    console.log('add new favorite blog')
+  }
+
   const loginForm = () => (
     <form onSubmit={handleLogin}>
       <div>
@@ -76,8 +81,27 @@ const App = () => {
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
-      <button type="button" onClick={handleLogOut}>log out</button>
+      
     </div>
+  )
+
+  const addBlogForm = () => (
+    <form onSubmit={handleAdd}>
+      <h2>add new favorite blog</h2>
+      <div>
+      title
+      <input type="text" name="title" />
+      </div>
+      <div>
+      author
+      <input type="text" name="author" />
+      </div>
+      <div>
+      url
+      <input type="text" name="url" />
+      </div>
+      <button type="submit">add this blog</button>
+    </form>
   )
   
   return (
@@ -86,6 +110,8 @@ const App = () => {
       <div>
         <p>{user.name} logged in</p>
         {blogList()}
+        {addBlogForm()}
+        <button type="button" onClick={handleLogOut}>log out</button>
       </div>
       }
     </div>   
