@@ -8,6 +8,9 @@ const App = () => {
   const  [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
+  const [title, setTitle] = useState('')
+  const [author, setAuthor] = useState('')
+  const [url, setUrl] = useState('')
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -48,9 +51,23 @@ const App = () => {
     console.log(window.localStorage)
   }
 
-  const handleAdd = e => {
+  const handleAdd = async (e) => {
     e.preventDefault()
-    console.log('add new favorite blog')
+    // console.log(JSON.stringify(user))
+    const blogData = {
+      title,
+      author,
+      url
+    }
+    try {
+      const newBlog = await blogService.create(blogData)
+      console.log(newBlog)
+      setTitle('')
+      setAuthor('')
+      setUrl('')
+    } catch (exception) {
+      console.log(`could not add ${JSON.stringify(blogData)}`)
+    }
   }
 
   const loginForm = () => (
@@ -77,11 +94,10 @@ const App = () => {
 
   const blogList = () => (
     <div>
-      <h2>blogs</h2>
+      <h2>favorites</h2>
       {blogs.map(blog =>
         <Blog key={blog.id} blog={blog} />
       )}
-      
     </div>
   )
 
@@ -90,15 +106,15 @@ const App = () => {
       <h2>add new favorite blog</h2>
       <div>
       title
-      <input type="text" name="title" />
+      <input type="text" onChange={({ target }) => setTitle(target.value)}/>
       </div>
       <div>
       author
-      <input type="text" name="author" />
+      <input type="text" onChange={({ target }) => setAuthor(target.value)} />
       </div>
       <div>
       url
-      <input type="text" name="url" />
+      <input type="text" onChange={({ target }) => setUrl(target.value)} />
       </div>
       <button type="submit">add this blog</button>
     </form>
@@ -106,11 +122,12 @@ const App = () => {
   
   return (
     <div>
+      <h1>blogs</h1>
       {user === null ? loginForm() : 
       <div>
         <p>{user.name} logged in</p>
-        {blogList()}
         {addBlogForm()}
+        {blogList()}
         <button type="button" onClick={handleLogOut}>log out</button>
       </div>
       }
