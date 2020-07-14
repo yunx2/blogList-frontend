@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
+import Notification from './components/Notification'
 import blogService from './services/blogs'
 import loginService from './services/login'
 
@@ -11,6 +12,7 @@ const App = () => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+  const [notification, setNotification] = useState(null)
 
   useEffect(() => {
     blogService.getAll().then(blogs =>
@@ -62,11 +64,22 @@ const App = () => {
     try {
       const newBlog = await blogService.create(blogData)
       console.log(newBlog)
+
+      setNotification(`added ${title} to favorites`)
+      setTimeout(() => {
+        setNotification(null)
+      }, 5000)
+
       setTitle('')
       setAuthor('')
       setUrl('')
     } catch (exception) {
       console.log(`could not add ${JSON.stringify(blogData)}`)
+
+      setNotification(`could not add ${JSON.stringify(blogData)}`)
+      setTimeout(() => {
+        setNotification(null)
+      }, 5000)
     }
   }
 
@@ -123,6 +136,7 @@ const App = () => {
   return (
     <div>
       <h1>blogs</h1>
+      <Notification message={notification}/>
       {user === null ? loginForm() : 
       <div>
         <p>{user.name} logged in</p>
