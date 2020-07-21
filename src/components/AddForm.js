@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import PropTypes from 'prop-types'
 
 const AddForm = ({ createBlog, notify }) => {
   const [title, setTitle] = useState('')
@@ -29,23 +30,28 @@ const AddForm = ({ createBlog, notify }) => {
     }
   }
   return (
-      <div>
-        <h2>add new favorite blog</h2>
+    <div>
+      <h2>add new favorite blog</h2>
         title
-        <form onSubmit={handleAdd}>
-          <input type="text" onChange={({ target }) => setTitle(target.value)} />
-          <div>
+      <form onSubmit={handleAdd}>
+        <input type="text" onChange={({ target }) => setTitle(target.value)} />
+        <div>
           author
           <input type="text" onChange={({ target }) => setAuthor(target.value)} />
-          </div>
-          <div>
+        </div>
+        <div>
           url
           <input type="text" onChange={({ target }) => setUrl(target.value)} />
-          </div>
-          <button type="submit">add this blog</button>
-        </form>
-      </div>
+        </div>
+        <button type="submit">add this blog</button>
+      </form>
+    </div>
   )
+}
+
+AddForm.propTypes = {
+  createBlog: PropTypes.func.isRequired,
+  notify: PropTypes.func.isRequired
 }
 
 export default AddForm
