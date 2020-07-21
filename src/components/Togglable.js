@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 
-const Togglable = props => {
+const Togglable = ({ buttonLabel, children}) => {
   const [toggleChild, setToggle] = useState(false)
   const hideChild = { display: toggleChild ? 'none' : '' } // if toggle = true, set attribute display="none" (element not displayed)
   const showChild = { display: toggleChild ? '' : 'none' } // if toggle = true, set attribute display="" (element displayed)
@@ -12,10 +12,10 @@ const Togglable = props => {
   return (
     <div>
       <div style={hideChild}>
-        <button onClick={toggle}>{props.buttonLabel}</button>
+        <button onClick={toggle}>{buttonLabel}</button>
       </div>
       <div style={showChild}>
-        {props.children}
+        {children}
         <button onClick={toggle}>cancel</button>
       </div>
     </div>
