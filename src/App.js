@@ -80,7 +80,7 @@ const App = () => {
   const blogList = () => (
     <div>
       <h2>favorites</h2>
-      {blogs.map(blog => <Blog key={blog.id} blog={blog} />)}
+      {blogs.map(blog => <Blog key={blog.id} favorite={blog} updateBlog={blogService.update} />)}
     </div>
   )
 
