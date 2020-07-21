@@ -9,9 +9,19 @@ const Blog = ({ favorite, updateBlog }) => {
     borderWidth: 1,
     marginBottom: 5
   }
-  const handleLike = () => {
-    favorite.likes++
-    console.log(favorite.likes)
+  const [likes, setLikes] = useState(favorite.likes)
+  const handleLike = async () => {
+    setLikes(likes + 1)
+    const dataObject = {
+      user: favorite.user,
+      likes,
+      author: favorite.author,
+      title: favorite.title,
+      url: favorite.url
+    }
+    console.log(likes)
+    const updated = await updateBlog(favorite.id, dataObject )
+    console.log('database updated', updated)
   }
 
   return (
@@ -20,7 +30,7 @@ const Blog = ({ favorite, updateBlog }) => {
       <Togglable buttonLabel="view details">
         <div>
        url: {favorite.url}
-          <p> likes: {favorite.likes}
+          <p> likes: {likes}
             <button type="button" onClick={handleLike}>like</button>
           </p>
         </div>
