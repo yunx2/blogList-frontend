@@ -28,7 +28,7 @@ const Blog = ({ favorite, updateBlog }) => {
     <div style={blogStyle} className="blog">
       <p>{favorite.title} by: {favorite.author}</p>
       <Togglable buttonLabel="view details">
-        <div>
+        <div className="details">
        url: {favorite.url}
           <p> likes: {likes}
             <button type="button" onClick={handleLike}>like</button>
