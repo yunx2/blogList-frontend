@@ -7,6 +7,9 @@
 
 # testing
 /coverage
+/cypress
+cypress.json
+setupTests.js
 
 # production
 /build
@@ -21,4 +24,3 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.eslintrc.js
