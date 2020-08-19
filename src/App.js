@@ -11,7 +11,7 @@ import { useDispatch } from 'react-redux'
 
 const App = () => {
   const [user, setUser] = useState(null)
-  console.log('user', user)
+  // console.log('user', user)
 
   const dispatch = useDispatch()
 

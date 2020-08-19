@@ -7,7 +7,7 @@ const Notification = () => {
   if (message) {
     return (
       <div className="error">
-        {JSON.stringify(message)}
+        {message.title}
       </div>
     )
   }

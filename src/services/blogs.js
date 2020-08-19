@@ -17,7 +17,7 @@ export const create = async dataObject => {
     headers: { Authorization: token }
   }
   const response = await axios.post(baseUrl, dataObject, config)
-  console.log(response.data)
+  console.log('response data:', response.data)
   return response.data
 }
 

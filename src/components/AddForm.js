@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
-import PropTypes from 'prop-types'
 import { useDispatch } from 'react-redux'
 
 import { setNotification, clearNotification } from '../reducers/notificationReducer'
+import { createNewBlog } from '../reducers/blogsReducer'
 
 const AddForm = ({ createBlog }) => {
   const [title, setTitle] = useState('')
@@ -11,7 +11,7 @@ const AddForm = ({ createBlog }) => {
 
   const dispatch = useDispatch()
 
-  const handleAdd = async (e) => {
+  const handleAdd = async e => {
     e.preventDefault()
     const blogData = {
       title,
@@ -19,7 +19,7 @@ const AddForm = ({ createBlog }) => {
       url
     }
     try {
-      await createBlog(blogData)
+      await dispatch(createNewBlog(blogData))
       dispatch(setNotification(`added ${title} to favorites`))
       setTimeout(() => {
         dispatch(clearNotification())
