@@ -37,7 +37,6 @@ const Blog = ({ favorite, updateBlog }) => {
       </Togglable>
     </div>
   )
-
 }
 
 export default Blog
