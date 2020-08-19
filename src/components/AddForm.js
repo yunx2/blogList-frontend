@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
 
-const AddForm = ({ createBlog, notify }) => {
+import { setNotification, clearNotification } from '../reducers/notificationReducer'
+
+const AddForm = ({ createBlog }) => {
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
   const [url, setUrl] = useState('')
+
+  const dispatch = useDispatch()
 
   const handleAdd = async (e) => {
     e.preventDefault()
@@ -15,17 +20,17 @@ const AddForm = ({ createBlog, notify }) => {
     }
     try {
       await createBlog(blogData)
-      notify(`added ${title} to favorites`)
+      dispatch(setNotification(`added ${title} to favorites`))
       setTimeout(() => {
-        notify(null)
-      }, 5000)
+        dispatch(clearNotification())
+      } , 5000)
       setTitle('')
       setAuthor('')
       setUrl('')
     } catch (exception) {
-      notify(`could not add ${JSON.stringify(blogData)}`)
+      dispatch(setNotification(`could not add ${JSON.stringify(blogData)}`))
       setTimeout(() => {
-        notify(null)
+        dispatch(clearNotification())
       }, 5000)
     }
   }

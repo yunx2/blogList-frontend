@@ -2,8 +2,11 @@ import React, { useState } from 'react'
 
 import { setToken } from '../services/blogs'
 import { login } from '../services/login'
+import { setNotification, clearNotification } from '../reducers/notificationReducer'
+import { useDispatch } from 'react-redux'
 
-const LoginForm = ({ setUser, notify }) => {
+const LoginForm = ({ setUser }) => {
+  const dispatch = useDispatch()
   const  [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -21,9 +24,9 @@ const LoginForm = ({ setUser, notify }) => {
       setPassword('')
     } catch (exception) {
       console.error('wrong credentials')
-      notify('wrong credentials')
+      dispatch(setNotification('wrong credentials'))
       setTimeout(() => {
-        notify(null)
+        dispatch(clearNotification())
       }, 5000)
     }
   }

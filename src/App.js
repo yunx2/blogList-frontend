@@ -6,11 +6,12 @@ import Togglable from './components/Togglable'
 import LoginForm from './components/LoginForm'
 
 import { getAll, setToken, create } from './services/blogs'
+import store from './store'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  const [notification, setNotification] = useState(null)
+  console.log('state:', store.getState())
 
   useEffect(() => {
     getAll().then(blogs =>
@@ -30,22 +31,20 @@ const App = () => {
   const handleLogOut = () => {
     setUser(null)
     window.localStorage.clear()
-    console.log(window.localStorage)
   }
 
   const addForm = () => (
     <Togglable buttonLabel="add blog" >
       <AddForm
-        createBlog={create}
-        notify={setNotification}        />
+        createBlog={create} />
     </Togglable>
   )
 
   return (
     <div>
       <h1>blogs</h1>
-      <Notification message={notification}/>
-      {user === null ? <LoginForm setUser={setUser} notify={setNotification} /> :
+      <Notification />
+      {user === null ? <LoginForm setUser={setUser} /> :
         <div id="content">
           <p>{user.name} logged in</p>
           {addForm()}

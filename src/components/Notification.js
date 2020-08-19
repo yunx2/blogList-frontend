@@ -1,6 +1,9 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 
-const Notification = ({ message }) => {
+const Notification = () => {
+  const message = useSelector(state => state)
+  console.log(message)
   if (message) {
     return (
       <div className="error">
