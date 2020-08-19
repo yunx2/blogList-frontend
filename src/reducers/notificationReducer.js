@@ -1,12 +1,12 @@
 const notificationReducer = (state = '', action) => {
-  console.log('state:', state, 'action:', action.type)
   switch (action.type) {
   case 'SET':
     return action.data
   case 'CLEAR':
     return ''
+  default:
+    return state
   }
-  return state
 }
 
 export const setNotification = message => {

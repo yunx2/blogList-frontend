@@ -6,18 +6,20 @@ import Togglable from './components/Togglable'
 import LoginForm from './components/LoginForm'
 
 import { getAll, setToken, create } from './services/blogs'
-import store from './store'
+import { getAllBlogs } from './reducers/blogsReducer'
+import { useDispatch } from 'react-redux'
 
 const App = () => {
-  const [blogs, setBlogs] = useState([])
   const [user, setUser] = useState(null)
-  console.log('state:', store.getState())
+  console.log('user', user)
+
+  const dispatch = useDispatch()
 
   useEffect(() => {
-    getAll().then(blogs =>
-      setBlogs( blogs )
-    )
-  }, [])
+    getAll().then(() => {
+      dispatch(getAllBlogs())
+    })
+  }, [dispatch])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')
@@ -48,7 +50,7 @@ const App = () => {
         <div id="content">
           <p>{user.name} logged in</p>
           {addForm()}
-          <BlogList blogs={blogs} />
+          <BlogList />
           <button type="button" onClick={handleLogOut}>log out</button>
         </div>
       }

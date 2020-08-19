@@ -54,9 +54,4 @@ const AddForm = ({ createBlog }) => {
   )
 }
 
-AddForm.propTypes = {
-  createBlog: PropTypes.func.isRequired,
-  notify: PropTypes.func.isRequired
-}
-
 export default AddForm
