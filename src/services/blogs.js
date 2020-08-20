@@ -21,7 +21,12 @@ export const create = async dataObject => {
   return response.data
 }
 
-export const update = (id, dataObject) => {
-  const request = axios.put(`${baseUrl}/${id}`, dataObject)
-  return request.then(response => response.data)
+export const update = async (id, dataObject) => {
+  const request = await axios.put(`${baseUrl}/${id}`, dataObject)
+  console.log(request)
+  return request
+}
+
+export const deleteBlog = id => {
+  axios.delete(`${baseUrl}/${id}`)
 }

@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
+import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
+import { likeBlog } from '../reducers/blogsReducer'
 
-const Blog = ({ favorite, updateBlog }) => {
+const Blog = ({ blog }) => {
+  // console.log('blog from Blog', blog)
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -9,28 +12,19 @@ const Blog = ({ favorite, updateBlog }) => {
     borderWidth: 1,
     marginBottom: 5
   }
-  const [likes, setLikes] = useState(favorite.likes)
-  const handleLike = async () => {
-    setLikes(likes + 1)
-    const dataObject = {
-      user: favorite.user,
-      likes,
-      author: favorite.author,
-      title: favorite.title,
-      url: favorite.url
-    }
-    console.log(likes)
-    const updated = await updateBlog(favorite.id, dataObject )
-    console.log('database updated', updated)
+  const dispatch = useDispatch()
+
+  const handleLike = () => {
+    dispatch(likeBlog(blog))
   }
 
   return (
     <div style={blogStyle} className="blog">
-      <p>{favorite.title} by: {favorite.author}</p>
+      <p>{blog.title} by: {blog.author}</p>
       <Togglable buttonLabel="view details">
         <div className="details">
-       url: {favorite.url}
-          <p> likes: {likes}
+       url: {blog.url}
+          <p> likes: {blog.likes + 1}
             <button type="button" onClick={handleLike}>like</button>
           </p>
         </div>
