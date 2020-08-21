@@ -27,10 +27,7 @@ export const update = async (id, dataObject) => {
   return request
 }
 
-export const deleteBlog = id => {
-  axios.delete(`${baseUrl}/${id}`)
-}
-
-export const deleteBlog = id => {
-  axios.delete(`${baseUrl}/${id}`)
+export const deleteBlog = async id => {
+  const response = await axios.delete(`${baseUrl}/${id}`)
+  console.log(response)
 }
