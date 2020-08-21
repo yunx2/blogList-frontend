@@ -25,3 +25,7 @@ export const update = (id, dataObject) => {
   const request = axios.put(`${baseUrl}/${id}`, dataObject)
   return request.then(response => response.data)
 }
+
+export const deleteBlog = id => {
+  axios.delete(`${baseUrl}/${id}`)
+}

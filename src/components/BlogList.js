@@ -8,7 +8,7 @@ const BlogList = () => {
   return (
     <div>
       <h2>favorites</h2>
-      {blogs.map(blog => <Blog key={blog.id} favorite={blog} updateBlog={update} />)}
+      {blogs.map((blog, i) => <Blog key={i} blog={blog} updateBlog={update} />)}
     </div>
   )
 }
