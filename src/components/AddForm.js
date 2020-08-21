@@ -11,7 +11,7 @@ const AddForm = () => {
 
   const dispatch = useDispatch()
 
-  const handleAdd = async e => {
+  const handleAdd = e => {
     e.preventDefault()
     const blogData = {
       title,
@@ -19,7 +19,7 @@ const AddForm = () => {
       url
     }
     try {
-      await dispatch(createNewBlog(blogData))
+      dispatch(createNewBlog(blogData))
       dispatch(setNotification(`added ${title} to favorites`))
       setTimeout(() => {
         dispatch(clearNotification())

@@ -1,4 +1,4 @@
-import { getAll, create, update } from '../services/blogs'
+import { getAll, create, update, deleteBlog } from '../services/blogs'
 
 const blogsReducer = (state = [], action) => {
   switch (action.type) {
@@ -6,7 +6,7 @@ const blogsReducer = (state = [], action) => {
     return action.data
   case 'CREATE': {
     const newBlog = action.data
-    const response = create(newBlog)
+    create(newBlog)
     // console.log('response: ', response)
     return state.concat(newBlog)
   }
@@ -15,12 +15,16 @@ const blogsReducer = (state = [], action) => {
     console.log('blog:', blog)
     const blogObj = { ...blog, likes: blog.id + 1 }
     const updatedBlog = update(action.data, blogObj)
-    return state.map(current => {
+    return state.filter(current => {
       if (current.id === blog.id) {
         return updatedBlog
       }
       return current
     })
+  }
+  case 'DELETE': {
+    const id = action.data
+    return state.filter(blog => blog.id !== id)
   }
   default:
     return state
@@ -52,6 +56,15 @@ export const likeBlog = blog => {
     dispatch({
       type: 'LIKE',
       data: blog
+    })
+  }
+}
+
+export const deleteById = id => {
+  return async (dispatch) => {
+    dispatch({
+      type: 'DELETE',
+      data: id
     })
   }
 }
