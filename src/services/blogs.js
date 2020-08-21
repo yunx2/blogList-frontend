@@ -30,3 +30,7 @@ export const update = async (id, dataObject) => {
 export const deleteBlog = id => {
   axios.delete(`${baseUrl}/${id}`)
 }
+
+export const deleteBlog = id => {
+  axios.delete(`${baseUrl}/${id}`)
+}
