@@ -13,13 +13,11 @@ const App = () => {
   const [user, setUser] = useState(null)
   // console.log('user', user)
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch() // useDispatch is a React hook from react-redux library
 
   useEffect(() => {
-    getAll().then(() => {
-      dispatch(getAllBlogs())
-    })
-  }, [dispatch])
+    dispatch(getAllBlogs()) // App component dispatches async action creator function, api call to server made in action creator, after which action is dispatched using redux dispatch function
+  }, [])
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')

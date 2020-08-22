@@ -2,7 +2,7 @@ import { getAll, create, update, deleteBlog } from '../services/blogs'
 
 const blogsReducer = (state = [], action) => {
   switch (action.type) {
-  case 'INIT':
+  case 'GET_ALL':
     return action.data
   case 'CREATE': {
     const newBlog = action.data
@@ -11,17 +11,15 @@ const blogsReducer = (state = [], action) => {
     return state.concat(newBlog)
   }
   case 'LIKE': {
-    const blog = action.data
-    console.log('blog:', blog)
-    const blogObj = { ...blog, likes: blog.id + 1 }
-    const updatedBlog = update(action.data, blogObj)
-    return state.filter(current => {
-      if (current.id === blog.id) {
+    const updatedBlog = action.data
+    return state.map(current => {
+      if (current.id === updatedBlog.id) {
         return updatedBlog
       }
       return current
     })
   }
+
   case 'DELETE': {
     const id = action.data
     return state.filter(blog => blog.id !== id)
@@ -32,11 +30,10 @@ const blogsReducer = (state = [], action) => {
 }
 
 export const getAllBlogs = () => {
-  return async (dispatch) => {  // dispach is the redux dispatch function; NOT react-redux useDispatch hook
+  return async (dispatch) => {  // dispatch is the redux dispatch function; NOT react-redux useDispatch hook
     const blogs = await getAll()
-    // console.log('blogs', blogs)
     dispatch({
-      type: 'INIT',
+      type: 'GET_ALL',
       data: blogs
     })
   }

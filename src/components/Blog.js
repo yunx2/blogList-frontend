@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
-import { deleteBlog } from '../services/blogs'
+import { deleteBlog, update } from '../services/blogs'
 
-const Blog = ({ blog, updateBlog }) => {
+const Blog = ({ blog }) => {
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
@@ -14,22 +14,14 @@ const Blog = ({ blog, updateBlog }) => {
   }
   const dispatch = useDispatch()
 
-  const [likes, setLikes] = useState(blog.likes)
   const handleLike = () => {
-    setLikes(likes + 1)
     const dataObject = {
-      user: blog.user,
-      likes,
-      author: blog.author,
-      title: blog.title,
-      url: blog.url
+      ...blog,
+      likes: blog.likes + 1
     }
-
-    // console.log('id:', blog.id)
-    const updated = updateBlog(blog.id, dataObject)
-    // console.log('database updated', updated.data)
+    update(blog.id, dataObject)
+    dispatch(likeBlog(dataObject))
   }
-
   const handleDelete = () => {
     deleteBlog(blog.id)
     dispatch(deleteById(blog.id))
@@ -44,7 +36,7 @@ const Blog = ({ blog, updateBlog }) => {
       <Togglable buttonLabel="view details">
         <div className="details">
        url: {blog.url}
-          <p> likes: {likes}
+          <p> likes: {blog.likes + 1}
             <button type="button" onClick={handleLike}>like</button>
           </p>
         </div>
