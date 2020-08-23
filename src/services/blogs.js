@@ -27,10 +27,10 @@ export const create = async dataObject => {
   return response.data
 }
 
-export const update = async (dataObject) => {
-  const response = await axios.put(`${baseUrl}/${dataObject.id}`, dataObject)
-  // console.log(request)
-  return response
+export const update = async blog => {
+  const response = await axios.put(`${baseUrl}/${blog.id}`, blog)
+  console.log('responseData:', response.data)
+  return response.data
 }
 
 export const deleteBlog = async id => {
