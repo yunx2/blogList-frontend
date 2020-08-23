@@ -5,7 +5,7 @@ import AddForm from './components/AddForm'
 import Togglable from './components/Togglable'
 import LoginForm from './components/LoginForm'
 
-import { getAll, setToken } from './services/blogs'
+import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
 import { useDispatch } from 'react-redux'
 

@@ -6,8 +6,6 @@ const blogsReducer = (state = [], action) => {
     return action.data
   case 'CREATE': {
     const newBlog = action.data
-    create(newBlog)
-    // console.log('response: ', response)
     return state.concat(newBlog)
   }
   case 'LIKE': {
@@ -19,7 +17,6 @@ const blogsReducer = (state = [], action) => {
       return current
     })
   }
-
   case 'DELETE': {
     const id = action.data
     return state.filter(blog => blog.id !== id)
@@ -41,9 +38,10 @@ export const getAllBlogs = () => {
 
 export const createNewBlog = blogData => {
   return async (dispatch) => {
+    const newBlog = await create(blogData)
     dispatch({
       type: 'CREATE',
-      data: blogData
+      data: newBlog
     })
   }
 }
@@ -59,6 +57,7 @@ export const likeBlog = blog => {
 
 export const deleteById = id => {
   return async (dispatch) => {
+    await deleteBlog(id)
     dispatch({
       type: 'DELETE',
       data: id

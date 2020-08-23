@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch } from 'react-redux'
 import Togglable from './Togglable'
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
-import { deleteBlog, update } from '../services/blogs'
+// import { deleteBlog, update } from '../services/blogs'
 
 const Blog = ({ blog }) => {
   const blogStyle = {
@@ -19,18 +19,14 @@ const Blog = ({ blog }) => {
       ...blog,
       likes: blog.likes + 1
     }
-    update(blog.id, dataObject)
+    // update(blog.id, dataObject)
     dispatch(likeBlog(dataObject))
-  }
-  const handleDelete = () => {
-    deleteBlog(blog.id)
-    dispatch(deleteById(blog.id))
   }
 
   return (
     <div style={blogStyle} className="blog">
       <p>{blog.title} by: {blog.author}</p>
-      <button onClick={handleDelete}>
+      <button onClick={() => dispatch(deleteById(blog.id))}>
         delete
       </button>
       <Togglable buttonLabel="view details">
