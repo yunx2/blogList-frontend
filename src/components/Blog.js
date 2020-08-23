@@ -32,7 +32,7 @@ const Blog = ({ blog }) => {
       <Togglable buttonLabel="view details">
         <div className="details">
        url: {blog.url}
-          <p> likes: {blog.likes + 1}
+          <p> likes: {blog.likes}
             <button type="button" onClick={handleLike}>like</button>
           </p>
         </div>

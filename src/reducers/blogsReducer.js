@@ -48,9 +48,11 @@ export const createNewBlog = blogData => {
 
 export const likeBlog = blog => {
   return async (dispatch) => {
+    const updated = await update(blog.id, blog)
+    console.log('response:', updated)
     dispatch({
       type: 'LIKE',
-      data: blog
+      data: updated
     })
   }
 }
