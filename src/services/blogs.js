@@ -9,8 +9,13 @@ export const setToken = newToken => {
 }
 
 export const getAll = async () => {
-  const request = await axios.get(baseUrl)
-  return request.data
+  const response = await axios.get(baseUrl)
+  return response.data
+}
+
+export const getById = async id => {
+  const response = await axios.get(`${baseUrl}/${id}`)
+  return response.data
 }
 
 export const create = async dataObject => {
@@ -22,10 +27,10 @@ export const create = async dataObject => {
   return response.data
 }
 
-export const update = async (id, dataObject) => {
-  const request = await axios.put(`${baseUrl}/${id}`, dataObject)
-  console.log(request)
-  return request
+export const update = async (dataObject) => {
+  const response = await axios.put(`${baseUrl}/${dataObject.id}`, dataObject)
+  // console.log(request)
+  return response
 }
 
 export const deleteBlog = async id => {
