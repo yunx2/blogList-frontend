@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
 import Togglable from './Togglable'
-import  { likeBlog, deleteById } from '../reducers/blogsReducer'
+import { likeBlog, deleteById } from '../reducers/blogsReducer'
 // import { deleteBlog, update } from '../services/blogs'
 
 const Blog = ({ id }) => {
@@ -9,6 +10,7 @@ const Blog = ({ id }) => {
     return state.blogs.find(blog => blog.id === id)
   })
   console.log('blog:', blog)
+
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
