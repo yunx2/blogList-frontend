@@ -26,7 +26,8 @@ export const setUserInfo = user => {
   }
 }
 
-export const clearUserInfo = () => {
+export const logout = () => {
+  window.localStorage.clear()
   return {
     type: 'CLEAR'
   }

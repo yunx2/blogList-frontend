@@ -7,6 +7,7 @@ import LoginForm from './components/LoginForm'
 
 import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
+import { logout } from './reducers/loggedInUserReducer'
 import { useDispatch } from 'react-redux'
 
 const App = () => {
@@ -22,16 +23,11 @@ const App = () => {
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')
     if (loggedUserJSON) {
-      const user = JSON.parse(loggedUserJSON)
-      setUser(user)
-      setToken(user.token)
+      const userInfo = JSON.parse(loggedUserJSON)
+      setUser(userInfo)
+      setToken(userInfo.token)
     }
   }, [])
-
-  const handleLogOut = () => {
-    setUser(null)
-    window.localStorage.clear()
-  }
 
   const addForm = () => (
     <Togglable buttonLabel="add blog" >
@@ -48,7 +44,7 @@ const App = () => {
           <p>{user.name} logged in</p>
           {addForm()}
           <BlogList />
-          <button type="button" onClick={handleLogOut}>log out</button>
+          <button type="button" onClick={() => dispatch(logout())}>log out</button>
         </div>
       }
     </div>
