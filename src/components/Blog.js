@@ -1,10 +1,12 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Togglable from './Togglable'
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
-// import { deleteBlog, update } from '../services/blogs'
 
-const Blog = ({ blog }) => {
+const Blog = ({ id }) => {
+  const blogs = useSelector(state => state.blogs)
+  const blog = blogs.find(blog => blog.id === id)
+
   const blogStyle = {
     paddingTop: 10,
     paddingLeft: 2,
