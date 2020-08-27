@@ -3,14 +3,14 @@ import React, { useState } from 'react'
 import { setToken } from '../services/blogs'
 import { login } from '../services/login'
 import { setNotification, clearNotification } from '../reducers/notificationReducer'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 const LoginForm = ({ setUser }) => {
   const dispatch = useDispatch()
   const  [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleLogin = async e => {
+  const handleLogin = async e => { // needs to dispatch action to LoginReducer
     e.preventDefault()
     try {
       const user = await login({ username, password
