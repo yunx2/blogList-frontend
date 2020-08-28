@@ -28,7 +28,7 @@ const App = () => {
       setToken(userInfo.token)
       dispatch(setLoggedInUserInfo(userInfo))
     }
-  }, [])
+  }, [dispatch])
 
   const addForm = () => (
     <Togglable buttonLabel="add blog" >
