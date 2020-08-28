@@ -26,7 +26,7 @@ const App = () => {
     if (loggedUserJSON) {
       const userInfo = JSON.parse(loggedUserJSON)
       setToken(userInfo.token)
-      setLoggedInUserInfo(userInfo)
+      dispatch(setLoggedInUserInfo(userInfo))
     }
   }, [])
 
