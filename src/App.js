@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import BlogList from './components/BlogList'
 import Notification from './components/Notification'
 import AddForm from './components/AddForm'
@@ -7,11 +7,12 @@ import LoginForm from './components/LoginForm'
 
 import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
-import { logout } from './reducers/loggedInUserReducer'
-import { useDispatch } from 'react-redux'
+import { logout, setLoggedInUserInfo } from './reducers/loggedInUserReducer'
+import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
-  const [user, setUser] = useState(null)
+  const user = useSelector(state => state.loggedInUser)
+
   // console.log('user', user)
 
   const dispatch = useDispatch() // useDispatch is a React hook from react-redux library
@@ -24,8 +25,8 @@ const App = () => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')
     if (loggedUserJSON) {
       const userInfo = JSON.parse(loggedUserJSON)
-      setUser(userInfo)
       setToken(userInfo.token)
+      setLoggedInUserInfo(userInfo)
     }
   }, [])
 
@@ -35,16 +36,21 @@ const App = () => {
     </Togglable>
   )
 
+  const handleLogout = () => {
+    window.localStorage.clear()
+    dispatch(logout())
+  }
+
   return (
     <div>
       <h1>blogs</h1>
       <Notification />
-      {user === null ? <LoginForm setUser={setUser} /> :
+      {user === null ? <LoginForm /> :
         <div id="content">
           <p>{user.name} logged in</p>
           {addForm()}
           <BlogList />
-          <button type="button" onClick={() => dispatch(logout())}>log out</button>
+          <button type="button" onClick={handleLogout}>log out</button>
         </div>
       }
     </div>

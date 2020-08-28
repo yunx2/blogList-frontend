@@ -12,13 +12,13 @@ const loggedInUserReducer = (state = null, action) => {
   }
 }
 
-export const setUserInfo = user => {
+export const setLoggedInUserInfo = user => {
   return async (dispatch) => {
     const userInfo = await login(user)
     window.localStorage.setItem(
-      'loggedInUser', JSON.stringify(userInfo)
+      'loggedInUser', JSON.stringify(user)
     )
-    setToken(userInfo.token)
+    setToken(user.token)
     dispatch({
       type: 'SET_USER',
       data: userInfo
@@ -27,7 +27,6 @@ export const setUserInfo = user => {
 }
 
 export const logout = () => {
-  window.localStorage.clear()
   return {
     type: 'CLEAR'
   }
