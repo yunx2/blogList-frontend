@@ -1,9 +1,12 @@
 import React, { useEffect } from 'react'
+import { BrowserRouter, Switch, Link, Route } from 'react-router-dom'
+
 import BlogList from './components/BlogList'
 import Notification from './components/Notification'
 import AddForm from './components/AddForm'
 import Togglable from './components/Togglable'
 import LoginForm from './components/LoginForm'
+import UsersList from './components/UsersList'
 
 import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
@@ -41,19 +44,31 @@ const App = () => {
     dispatch(logout())
   }
 
+  const padding = { padding: 5 }
   return (
-    <div>
+    <BrowserRouter>
+      <div>
+        <Link style={padding} to="/">home</Link>
+        <Link style={padding} to="/users">users</Link>
+      </div>
       <h1>blogs</h1>
       <Notification />
-      {user === null ? <LoginForm /> :
-        <div id="content">
-          <p>{user.name} logged in</p>
-          {addForm()}
-          <BlogList />
-          <button type="button" onClick={handleLogout}>log out</button>
-        </div>
-      }
-    </div>
+      <button type="button" onClick={handleLogout}>log out</button>
+      <Switch>
+        <Route path="/users">
+          <UsersList />
+        </Route>
+        <Route path="/">
+          {user === null ? <LoginForm /> :
+            <div id="content">
+              <p>{user.name} logged in</p>
+              {addForm()}
+              <BlogList />
+            </div>
+          }
+        </Route>
+      </Switch>
+    </BrowserRouter>
   )
 }
 

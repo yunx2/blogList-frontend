@@ -5,11 +5,13 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import notificationReducer from './reducers/notificationReducer'
 import blogsReducer from './reducers/blogsReducer'
 import loggedInUserReducer from './reducers/loggedInUserReducer'
+import usersReducer from './reducers/usersReducer'
 
 const rootReducer = combineReducers({
   notification: notificationReducer,
   blogs: blogsReducer,
-  loggedInUser: loggedInUserReducer
+  loggedInUser: loggedInUserReducer,
+  users: usersReducer
 })
 
 const store = createStore(
@@ -19,6 +21,6 @@ const store = createStore(
   )
 )
 
-store.subscribe(() => console.log(store.getState().blogs))
+// store.subscribe(() => console.log(store.getState().blogs))
 
 export default store
