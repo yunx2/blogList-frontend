@@ -10,12 +10,24 @@ const UsersList = () => {
   }, [])
   const users = useSelector(state => state.users)
   // console.log('all users:', users)
+  const styling = { textAlign: 'center' }
   return (
     <div>
       <h2>users</h2>
-      {users.map(user => {
-        return <p key={user.id}>{user.username}     {user.blogs.length}</p>
-      })}
+      <table>
+        <tr>
+          <th></th>
+          <th>blogs added</th>
+        </tr>
+        {users.map(user => {
+          return (
+            <tr key={user.id}>
+              <td>{user.username}</td>
+              <td>{user.blogs.length}</td>
+            </tr>
+          )
+        })}
+      </table>
     </div>
   )
 }
