@@ -16,9 +16,9 @@ export const setLoggedInUserInfo = user => {
   return async (dispatch) => {
     const userInfo = await login(user)
     window.localStorage.setItem(
-      'loggedInUser', JSON.stringify(user)
+      'loggedInUser', JSON.stringify(userInfo)
     )
-    setToken(user.token)
+    setToken(userInfo.token)
     dispatch({
       type: 'SET_USER',
       data: userInfo
