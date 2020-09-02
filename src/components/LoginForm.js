@@ -28,6 +28,7 @@ const LoginForm = () => {
 
   return (
     <form onSubmit={handleLogin}>
+      <h1>blogs</h1>
       <div>
       username
         <input

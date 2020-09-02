@@ -51,7 +51,6 @@ const App = () => {
   const itemStyle = { display: 'inline' }
   return (
     <BrowserRouter>
-      <h1>blogs</h1>
       <Notification />
       <Switch>
         <Route path="/blogs/:id">
@@ -61,6 +60,7 @@ const App = () => {
           <User />
         </Route>
         <Route path="/users">
+          <h1>blogs</h1>
           <UsersList />
         </Route>
         <Route path="/">
@@ -76,6 +76,7 @@ const App = () => {
                   </li>
                 </ul>
               </nav>
+              <h1>blogs</h1>
               {addForm()}
               <BlogList />
             </div>
