@@ -12,7 +12,7 @@ const userReducer = (state = [], action) => {
 export const getAllUsers = () => {
   return async (dispatch) => {
     const users = await getUsers()
-    console.log('users: ', users)
+    // console.log('users: ', users)
     dispatch({
       type: 'GET_USERS',
       data: users

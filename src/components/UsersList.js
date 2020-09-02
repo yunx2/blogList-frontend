@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import { getAllUsers } from '../reducers/usersReducer'
 
@@ -10,7 +11,6 @@ const UsersList = () => {
   }, [])
   const users = useSelector(state => state.users)
   // console.log('all users:', users)
-  const styling = { textAlign: 'center' }
   return (
     <div>
       <h2>users</h2>
@@ -22,7 +22,7 @@ const UsersList = () => {
         {users.map(user => {
           return (
             <tr key={user.id}>
-              <td>{user.username}</td>
+              <td><Link to={`/users/${user.id}`}>{user.username}</Link></td>
               <td>{user.blogs.length}</td>
             </tr>
           )

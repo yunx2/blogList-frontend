@@ -7,6 +7,7 @@ import AddForm from './components/AddForm'
 import Togglable from './components/Togglable'
 import LoginForm from './components/LoginForm'
 import UsersList from './components/UsersList'
+import User from './components/User'
 
 import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
@@ -55,6 +56,9 @@ const App = () => {
       <Notification />
       <button type="button" onClick={handleLogout}>log out</button>
       <Switch>
+        <Route path="/users/:id">
+          <User />
+        </Route>
         <Route path="/users">
           <UsersList />
         </Route>
