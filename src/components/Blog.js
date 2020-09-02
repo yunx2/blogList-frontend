@@ -2,7 +2,6 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
-import Togglable from './Togglable'
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
 
 const Blog = ({ id }) => {
@@ -31,18 +30,9 @@ const Blog = ({ id }) => {
 
   return (
     <div style={blogStyle} className="blog">
-      <p><Link to={`/blogs/${blog.id}`}>{blog.title} by: {blog.author}</Link></p>
-      <button onClick={() => dispatch(deleteById(blog.id))}>
-        delete
-      </button>
-      <Togglable buttonLabel="view details">
-        <div className="details">
-       url: {blog.url}
-          <p> likes: {blog.likes}
-            <button type="button" onClick={handleLike}>like</button>
-          </p>
-        </div>
-      </Togglable>
+      <p><Link to={`/blogs/${blog.id}`}>
+        {blog.title} by: {blog.author}
+      </Link></p>
     </div>
   )
 }
