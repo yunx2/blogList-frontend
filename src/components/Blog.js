@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 import Togglable from './Togglable'
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
@@ -30,7 +31,7 @@ const Blog = ({ id }) => {
 
   return (
     <div style={blogStyle} className="blog">
-      <p>{blog.title} by: {blog.author}</p>
+      <p><Link to={`/blogs/${blog.id}`}>{blog.title} by: {blog.author}</Link></p>
       <button onClick={() => dispatch(deleteById(blog.id))}>
         delete
       </button>
