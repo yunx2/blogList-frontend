@@ -21,6 +21,6 @@ const store = createStore(
   )
 )
 
-// store.subscribe(() => console.log(store.getState().users))
+store.subscribe(() => console.log(store.getState().users))
 
 export default store
