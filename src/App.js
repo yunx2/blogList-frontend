@@ -47,15 +47,19 @@ const App = () => {
   }
 
   const padding = { padding: 5 }
+  const listStyle = { listStyle: 'none', margin: 0, padding: 0 }
+  const itemStyle = { display: 'inline' }
   return (
     <BrowserRouter>
-      <div>
-        <Link style={padding} to="/">home</Link>
-        <Link style={padding} to="/users">users</Link>
-      </div>
+      <nav>
+        <ul style={listStyle}>
+          <li style={itemStyle}><Link style={padding} to="/">home</Link></li>
+          <li style={itemStyle}><Link style={padding} to="/users">users</Link></li>
+          <button type="button" onClick={handleLogout}>log out</button>
+        </ul>
+      </nav>
       <h1>blogs</h1>
       <Notification />
-      <button type="button" onClick={handleLogout}>log out</button>
       <Switch>
         <Route path="/blogs/:id">
           <BlogView />

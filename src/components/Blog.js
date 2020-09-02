@@ -1,8 +1,6 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-
-import { likeBlog, deleteById } from '../reducers/blogsReducer'
 
 const Blog = ({ id }) => {
   const blog = useSelector( state  => {
