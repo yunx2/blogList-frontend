@@ -51,13 +51,6 @@ const App = () => {
   const itemStyle = { display: 'inline' }
   return (
     <BrowserRouter>
-      <nav>
-        <ul style={listStyle}>
-          <li style={itemStyle}><Link style={padding} to="/">home</Link></li>
-          <li style={itemStyle}><Link style={padding} to="/users">users</Link></li>
-          <button type="button" onClick={handleLogout}>log out</button>
-        </ul>
-      </nav>
       <h1>blogs</h1>
       <Notification />
       <Switch>
@@ -73,7 +66,16 @@ const App = () => {
         <Route path="/">
           {user === null ? <LoginForm /> :
             <div id="content">
-              <p>{user.name} logged in</p>
+              <nav>
+                <ul style={listStyle}>
+                  <li style={itemStyle}><Link style={padding} to="/">home</Link></li>
+                  <li style={itemStyle}><Link style={padding} to="/users">users</Link></li>
+                  <li style={itemStyle}>
+                    <span>{user.name} logged in</span>
+                    <button type="button" onClick={handleLogout}>log out</button>
+                  </li>
+                </ul>
+              </nav>
               {addForm()}
               <BlogList />
             </div>
