@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
+import CommentsList from './CommentsList'
 
 const BlogView = () => {
   const dispatch = useDispatch()
@@ -30,6 +31,7 @@ const BlogView = () => {
           </p>
         </div>
         added by {blog.user.name}
+        <CommentsList />
       </div>
     )
   }
