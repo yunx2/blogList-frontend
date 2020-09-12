@@ -9,7 +9,7 @@ const BlogView = () => {
   const dispatch = useDispatch()
   const blogId = useParams().id
   const blog = useSelector(state => state.blogs.find(blog => blog.id === blogId))
-
+  console.log('blog: ', blog)
   const handleLike = () => {
     const dataObject = {
       ...blog,

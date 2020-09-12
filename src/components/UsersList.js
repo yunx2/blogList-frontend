@@ -6,9 +6,11 @@ import { getAllUsers } from '../reducers/usersReducer'
 
 const UsersList = () => {
   const dispatch = useDispatch()
+
   useEffect(() => {
     dispatch(getAllUsers())
-  }, [])
+  }, [dispatch])
+
   const users = useSelector(state => state.users)
   // console.log('all users:', users)
   return (

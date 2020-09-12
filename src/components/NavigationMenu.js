@@ -15,7 +15,9 @@ const NavigationMenu = ({ handleLogout, user }) => {
         <li style={itemStyle}><Link style={padding} to="/users">users</Link></li>
         <li style={itemStyle}>
           <span>{user.name} logged in</span>
-          <button type="button" onClick={handleLogout}>log out</button>
+          <p>
+            <button type="button" onClick={handleLogout}>log out</button>
+          </p>
         </li>
       </ul>
     </nav>

@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { BrowserRouter, Switch, Link, Route } from 'react-router-dom'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import BlogList from './components/BlogList'
 import Notification from './components/Notification'
@@ -30,7 +30,7 @@ const App = () => {
     // console.log('loggedUserJSON:', loggedUserJSON )
     if (loggedUserJSON) {
       const userCredentials = JSON.parse(loggedUserJSON)
-      console.log('parsed: ', userCredentials)
+      // console.log('parsed: ', userCredentials)
       dispatch(setFromLocalStorage(userCredentials))
       setToken(userCredentials.token)
     }
