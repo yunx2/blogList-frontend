@@ -12,13 +12,11 @@ import BlogView from './components/BlogView'
 
 import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
-import { logout, setLoggedInUserInfo } from './reducers/loggedInUserReducer'
+import { logout, setFromLocalStorage } from './reducers/loggedInUserReducer'
 import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
   const user = useSelector(state => state.loggedInUser)
-
-  // console.log('user', user)
 
   const dispatch = useDispatch() // useDispatch is a React hook from react-redux library
 
@@ -28,10 +26,12 @@ const App = () => {
 
   useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedInUser')
+    // console.log('loggedUserJSON:', loggedUserJSON )
     if (loggedUserJSON) {
-      const userInfo = JSON.parse(loggedUserJSON)
-      setToken(userInfo.token)
-      dispatch(setLoggedInUserInfo(userInfo))
+      const userCredentials = JSON.parse(loggedUserJSON)
+      console.log('parsed: ', userCredentials)
+      dispatch(setFromLocalStorage(userCredentials))
+      setToken(userCredentials.token)
     }
   }, [dispatch])
 
@@ -65,7 +65,7 @@ const App = () => {
         </Route>
         <Route path="/">
           {user === null ? <LoginForm /> :
-            <div id="content">
+            (<div id="content">
               <nav>
                 <ul style={listStyle}>
                   <li style={itemStyle}><Link style={padding} to="/">home</Link></li>
@@ -79,7 +79,7 @@ const App = () => {
               <h1>blogs</h1>
               {addForm()}
               <BlogList />
-            </div>
+            </div>)
           }
         </Route>
       </Switch>

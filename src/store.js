@@ -21,6 +21,6 @@ const store = createStore(
   )
 )
 
-store.subscribe(() => console.log(store.getState().blogs))
+store.subscribe(() => console.log('store loggedInUser:', store.getState().loggedInUser))
 
 export default store

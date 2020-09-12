@@ -7,14 +7,17 @@ const loggedInUserReducer = (state = null, action) => {
     return action.data
   case 'CLEAR':
     return null
+  case 'CHECK': {
+    return action.data
+  }
   default:
     return state
   }
 }
 
-export const setLoggedInUserInfo = user => {
+export const setLoggedInUserInfo = userCredentials => {
   return async (dispatch) => {
-    const userInfo = await login(user)
+    const userInfo = await login(userCredentials)
     window.localStorage.setItem(
       'loggedInUser', JSON.stringify(userInfo)
     )
@@ -23,6 +26,13 @@ export const setLoggedInUserInfo = user => {
       type: 'SET_USER',
       data: userInfo
     })
+  }
+}
+
+export const setFromLocalStorage = userCredentials  => {
+  return {
+    type: 'CHECK',
+    data: userCredentials
   }
 }
 
