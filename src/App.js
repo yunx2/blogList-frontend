@@ -9,6 +9,7 @@ import LoginForm from './components/LoginForm'
 import UsersList from './components/UsersList'
 import User from './components/User'
 import BlogView from './components/BlogView'
+import NavigationMenu from './components/NavigationMenu'
 
 import { setToken } from './services/blogs'
 import { getAllBlogs } from './reducers/blogsReducer'
@@ -46,12 +47,10 @@ const App = () => {
     dispatch(logout())
   }
 
-  const padding = { padding: 5 }
-  const listStyle = { listStyle: 'none', margin: 0, padding: 0 }
-  const itemStyle = { display: 'inline' }
   return (
     <BrowserRouter>
       <Notification />
+      <NavigationMenu handleLogout={handleLogout} user={user} />
       <Switch>
         <Route path="/blogs/:id">
           <BlogView />
@@ -66,16 +65,6 @@ const App = () => {
         <Route path="/">
           {user === null ? <LoginForm /> :
             (<div id="content">
-              <nav>
-                <ul style={listStyle}>
-                  <li style={itemStyle}><Link style={padding} to="/">home</Link></li>
-                  <li style={itemStyle}><Link style={padding} to="/users">users</Link></li>
-                  <li style={itemStyle}>
-                    <span>{user.name} logged in</span>
-                    <button type="button" onClick={handleLogout}>log out</button>
-                  </li>
-                </ul>
-              </nav>
               <h1>blogs</h1>
               {addForm()}
               <BlogList />
