@@ -20,7 +20,7 @@ const UsersList = () => {
         <tbody>
           <tr>
             <td></td>
-            <td><th>blogs added</th></td>
+            <th>blogs added</th>
           </tr>
           {users.map(user => {
             return (
