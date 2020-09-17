@@ -22,7 +22,8 @@ const AddForm = () => {
       dispatch(createNewBlog(blogData))
       dispatch(setNotification(`added ${title} to favorites`))
       setTimeout(() => {
-        dispatch(clearNotification())
+        // dispatch(clearNotification())
+        dispatch(setNotification(''))
       } , 5000)
       setTitle('')
       setAuthor('')
@@ -30,7 +31,7 @@ const AddForm = () => {
     } catch (exception) {
       dispatch(setNotification(`could not add ${JSON.stringify(blogData)}`))
       setTimeout(() => {
-        dispatch(clearNotification())
+        dispatch(setNotification(''))
       }, 5000)
     }
   }

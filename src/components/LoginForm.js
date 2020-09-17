@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import { setLoggedInUserInfo } from '../reducers/loggedInUserReducer'
-import { setNotification, clearNotification } from '../reducers/notificationReducer'
+import { setNotification } from '../reducers/notificationReducer'
 
 const LoginForm = () => {
   const dispatch = useDispatch()
@@ -21,7 +21,7 @@ const LoginForm = () => {
       console.error('wrong credentials')
       dispatch(setNotification('wrong credentials'))
       setTimeout(() => {
-        dispatch(clearNotification())
+        dispatch(setNotification(''))
       }, 5000)
     }
   }
