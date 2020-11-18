@@ -31,7 +31,7 @@ const BlogView = () => {
           </p>
         </div>
         added by {blog.user.name}
-        <CommentsList />
+        <CommentsList comments={blog.comments} />
       </div>
     )
   }
