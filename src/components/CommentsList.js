@@ -1,6 +1,6 @@
 import React from 'react'
 
-const CommentsList = (comments) => {
+const CommentsList = ({ comments }) => {
   // const comments = ['awesomearticle', 'this is the best', 'i love this blog']
   return (
     <div>

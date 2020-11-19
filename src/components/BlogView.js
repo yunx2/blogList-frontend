@@ -19,6 +19,7 @@ const BlogView = () => {
   }
 
   if (blog) {
+    // console.log('number of comments', blog.comments.length)
     return (
       <div><h2>{blog.title}</h2>
         <button onClick={() => dispatch(deleteById(blog.id))}>
