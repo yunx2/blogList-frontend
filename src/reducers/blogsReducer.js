@@ -8,7 +8,7 @@ const blogsReducer = (state = [], action) => {
     const newBlog = action.data
     return state.concat(newBlog)
   }
-  case 'LIKE': {
+  case 'EDIT': {
     const updatedBlog = action.data
     return state.map(current => {
       if (current.id === updatedBlog.id) {
@@ -27,7 +27,7 @@ const blogsReducer = (state = [], action) => {
 }
 
 export const getAllBlogs = () => {
-  return async (dispatch) => {  // dispatch is the redux dispatch function; NOT react-redux useDispatch hook
+  return async (dispatch) => {  // dispatch is the redux dispatch function; NOT react-redux useDispatch hook (useDispatch hook actually returns a reference to this function)
     const blogs = await getAll()
     dispatch({
       type: 'GET_ALL',
@@ -51,7 +51,7 @@ export const likeBlog = (blog) => {
     const updated = await update(blog)
     console.log('response:', updated)
     dispatch({
-      type: 'LIKE',
+      type: 'EDIT',
       data: updated
     })
   }
@@ -67,8 +67,14 @@ export const deleteById = id => {
   }
 }
 
-export const addComment = (id, comment) => {
-  
+export const addComment = blog => {
+  return async dispatch => {
+    const response = await update(blog);
+    dispatch({
+      type: 'EDIT',
+      data: response
+    });
+  }
 }
 
 export default blogsReducer
