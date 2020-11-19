@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
 import CommentsList from './CommentsList'
+import CommentForm from './CommentForm'
 
 const BlogView = () => {
   const dispatch = useDispatch()
@@ -32,6 +33,7 @@ const BlogView = () => {
           </p>
         </div>
         added by {blog.user.name}
+        <CommentForm id={blog.id} />
         <CommentsList comments={blog.comments} />
       </div>
     )

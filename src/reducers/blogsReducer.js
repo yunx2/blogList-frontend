@@ -67,4 +67,8 @@ export const deleteById = id => {
   }
 }
 
+export const addComment = (id, comment) => {
+  
+}
+
 export default blogsReducer
