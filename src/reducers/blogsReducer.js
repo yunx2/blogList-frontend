@@ -1,4 +1,4 @@
-import { getAll, create, update, deleteBlog } from '../services/blogs'
+import { getAll, create, update, deleteBlog, addNewComment } from '../services/blogs'
 
 const blogsReducer = (state = [], action) => {
   switch (action.type) {
@@ -27,7 +27,7 @@ const blogsReducer = (state = [], action) => {
 }
 
 export const getAllBlogs = () => {
-  return async (dispatch) => {  // dispatch is the redux dispatch function; NOT react-redux useDispatch hook (useDispatch hook actually returns a reference to this function)
+  return async (dispatch) => {  // dispatch is the redux dispatch function; NOT react-redux useDispatch hook
     const blogs = await getAll()
     dispatch({
       type: 'GET_ALL',
@@ -69,7 +69,7 @@ export const deleteById = id => {
 
 export const addComment = blog => {
   return async dispatch => {
-    const response = await update(blog);
+    const response = await addNewComment(blog);
     dispatch({
       type: 'EDIT',
       data: response

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 
 import { addComment } from '../reducers/blogsReducer';
 
-const CommentForm = blog => {
+const CommentForm = ({ blog }) => {
   // call useDispatch hook here at top level of component instead of inside handleSubmit where the action is dispatched because hooks cannot be called inside nested functions (or inside loops, or conditions)
   const dispatch = useDispatch();
 
@@ -27,7 +27,7 @@ const CommentForm = blog => {
     }
   }
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <h2>add comment</h2>
       <input type="text" onChange={e => setComment(e.target.value)} />
       <button type="submit">submit comment</button>

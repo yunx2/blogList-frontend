@@ -36,3 +36,9 @@ export const update = async blog => {
 export const deleteBlog = async id => {
   await axios.delete(`${baseUrl}/${id}`)
 }
+
+export const addNewComment = async blog => {
+  const response = await axios.post(`${baseUrl}/${blog.id}/comments`, blog);
+  console.log('updated comments:', JSON.stringify(response.data.comments));
+  return response.data;
+}
