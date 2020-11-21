@@ -48,31 +48,33 @@ const App = () => {
   }
 
   return (
-    <BrowserRouter>
-      <Notification />
-      <NavigationMenu handleLogout={handleLogout} user={user} />
-      <Switch>
-        <Route path="/blogs/:id">
-          <BlogView />
-        </Route>
-        <Route path="/users/:id">
-          <User />
-        </Route>
-        <Route path="/users">
-          <h1>blogs</h1>
-          <UsersList />
-        </Route>
-        <Route path="/">
-          {user === null ? <LoginForm /> :
-            (<div id="content">
-              <h1>blogs</h1>
-              {addForm()}
-              <BlogList />
-            </div>)
-          }
-        </Route>
-      </Switch>
-    </BrowserRouter>
+    <div className="container">
+      <BrowserRouter>
+        <Notification />
+        <NavigationMenu handleLogout={handleLogout} user={user} />
+        <Switch>
+          <Route path="/blogs/:id">
+            <BlogView />
+          </Route>
+          <Route path="/users/:id">
+            <User />
+          </Route>
+          <Route path="/users">
+            <h1>blogs</h1>
+            <UsersList />
+          </Route>
+          <Route path="/">
+            {user === null ? <LoginForm /> :
+              (<div id="content">
+                <h1>blogs</h1>
+                {addForm()}
+                <BlogList />
+              </div>)
+            }
+          </Route>
+        </Switch>
+      </BrowserRouter>
+    </div>
   )
 }
 
