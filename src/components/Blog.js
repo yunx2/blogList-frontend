@@ -7,20 +7,18 @@ const Blog = ({ id }) => {
     return state.blogs.find(blog => blog.id === id)
   })
   // console.log('blog:', blog)
-  const blogStyle = {
-    paddingTop: 10,
-    paddingLeft: 2,
-    border: 'solid',
-    borderWidth: 1,
-    marginBottom: 5
-  }
 
   return (
-    <div style={blogStyle} className="blog">
-      <p><Link to={`/blogs/${blog.id}`}>
-        {blog.title} by: {blog.author}
-      </Link></p>
-    </div>
+    <tr key={id}>
+      <td>
+        <Link to={`/blogs/${blog.id}`}>
+          {blog.title}
+        </Link>
+      </td>
+      <td>
+      by: {blog.author}
+      </td>
+    </tr>
   )
 }
 

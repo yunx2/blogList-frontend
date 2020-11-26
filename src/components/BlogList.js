@@ -1,5 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { Table } from 'react-bootstrap';
 import Blog from './Blog'
 
 const BlogList = () => {
@@ -7,7 +8,12 @@ const BlogList = () => {
   return (
     <div>
       <h2>favorites</h2>
-      {blogs.map((blog) => <Blog key={blog.id} id={blog.id}  />)}
+      <Table striped>
+        <tbody>
+          {blogs.map((blog) => <Blog key={blog.id} id={blog.id}  />)}
+        </tbody>
+      </Table>
+
     </div>
   )
 }
