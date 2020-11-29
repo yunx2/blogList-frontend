@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
+import { Form, Button } from 'react-bootstrap';
 
 import { setNotification } from '../reducers/notificationReducer'
 import { createNewBlog } from '../reducers/blogsReducer'
@@ -38,19 +39,17 @@ const AddForm = () => {
   return (
     <div>
       <h2>add new favorite blog</h2>
-        title
-      <form onSubmit={handleAdd}>
-        <input id="title" type="text" onChange={({ target }) => setTitle(target.value)} />
-        <div>
-          author
-          <input id="author" type="text" onChange={({ target }) => setAuthor(target.value)} />
-        </div>
-        <div>
-          url
-          <input id="url" type="text" onChange={({ target }) => setUrl(target.value)} />
-        </div>
-        <button id="add" type="submit">add this blog</button>
-      </form>
+      <Form onSubmit={handleAdd}>
+        <Form.Group>
+          <Form.Label>title</Form.Label>
+          <Form.Control type="text" onChange={({ target }) => setTitle(target.value)} />
+          <Form.Label>author</Form.Label>
+          <Form.Control type="text" onChange={({ target }) => setAuthor(target.value)} />
+          <Form.Label>url</Form.Label>
+          <Form.Control id="url" type="text" onChange={({ target }) => setUrl(target.value)} />
+          <Button variant="primary" type="submit">add this blog</Button>
+        </Form.Group>
+      </Form>
     </div>
   )
 }
