@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
-
 import BlogList from './components/BlogList'
 import Notification from './components/Notification'
 import AddForm from './components/AddForm'

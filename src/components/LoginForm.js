@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux';
+import { Form, Button } from 'react-bootstrap';
 
 import { setLoggedInUserInfo } from '../reducers/loggedInUserReducer'
 import { setNotification } from '../reducers/notificationReducer'
@@ -27,28 +28,26 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={handleLogin}>
-      <h1>blogs</h1>
-      <div>
-      username
-        <input
-          id="username"
-          type="text"
-          value={username}
-          name="Username"
-          onChange={({ target }) => setUsername(target.value)} />
-      </div>
-      <div>
-      password
-        <input
-          id="password"
-          type="password"
-          value={password}
-          name="Password"
-          onChange={({ target }) => setPassword(target.value)} />
-      </div>
-      <button className="login-button" type="submit">login</button>
-    </form>
+    <div>
+      <Form onSubmit={handleLogin}>
+        <h1>blogs</h1>
+        <Form.Label>username</Form.Label>
+        <Form.Group>
+          <Form.Control
+            type="text"
+            value={username}
+            name="Username"
+            onChange={({ target }) => setUsername(target.value)} />
+          <Form.Label>password</Form.Label>
+          <Form.Control
+            type="password"
+            value={password}
+            name="Password"
+            onChange={({ target }) => setPassword(target.value)} />
+          <Button variant="primary" type="submit">login</Button>
+        </Form.Group>
+      </Form>
+    </div>
   )
 }
 

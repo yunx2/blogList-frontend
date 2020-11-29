@@ -13,7 +13,6 @@ const BlogList = () => {
           {blogs.map((blog) => <Blog key={blog.id} id={blog.id}  />)}
         </tbody>
       </Table>
-
     </div>
   )
 }
