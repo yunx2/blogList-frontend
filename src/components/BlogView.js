@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
+import { Table, Button, Form } from 'react-bootstrap';
 
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
 import CommentsList from './CommentsList'
@@ -22,16 +23,18 @@ const BlogView = () => {
   if (blog) {
     // console.log('number of comments', blog.comments.length)
     return (
-      <div><h2>{blog.title}</h2>
-        <button onClick={() => dispatch(deleteById(blog.id))}>
-        delete
-        </button>
-        <div className="details">
-          url: {blog.url}
-          <p> likes: {blog.likes}
-            <button type="button" onClick={handleLike}>like</button>
-          </p>
-        </div>
+      <div>
+        <h2>{blog.title}</h2>
+        <Form>
+          <Button variant="primary" onClick={() => dispatch(deleteById(blog.id))}>
+          delete
+          </Button>
+          <div>url: {blog.url}</div>
+          <Form.Group>
+            likes: {blog.likes}
+            <Button variant="primary" type="button" onClick={handleLike}>like</Button>
+          </Form.Group>
+        </Form>
         added by {blog.user.name}
         <CommentForm blog={blog} />
         <CommentsList comments={blog.comments} />
