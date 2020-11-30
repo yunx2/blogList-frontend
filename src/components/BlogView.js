@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { Table, Button, Form } from 'react-bootstrap';
+import { Button, Form } from 'react-bootstrap';
 
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
 import CommentsList from './CommentsList'
