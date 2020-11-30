@@ -31,7 +31,7 @@ const CommentForm = ({ blog }) => {
     <div>
       <Form onSubmit={handleSubmit}>
         <h2>add a comment</h2>
-        <Form.Control type="text" onChange={e => setComment(e.target.value)} />
+        <Form.Control as="textarea" rows={3} onChange={e => setComment(e.target.value)} />
         <Button variant="primary" type="submit">submit comment</Button>
       </Form>
     </div>
