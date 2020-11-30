@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Button } from 'react-bootstrap';
 import PropTypes from 'prop-types'
 
 const Togglable = ({ buttonLabel, children }) => {
@@ -11,16 +12,15 @@ const Togglable = ({ buttonLabel, children }) => {
   return (
     <div>
       <div style={hideChild} className="togglableContent">
-        <button className="buttonLabel" onClick={toggle}>{buttonLabel}</button>
+        <Button className="buttonLabel" onClick={toggle}>{buttonLabel}</Button>
       </div>
       <div style={showChild} className="hidden">
         {children}
-        <button onClick={toggle}>cancel</button>
+        <Button onClick={toggle}>cancel</Button>
       </div>
     </div>
   )
 }
-
 
 Togglable.propTypes = {
   buttonLabel: PropTypes.string.isRequired
