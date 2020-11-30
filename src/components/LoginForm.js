@@ -18,6 +18,10 @@ const LoginForm = () => {
         password
       }
       dispatch(setLoggedInUserInfo(credentials))
+      dispatch(setNotification('welcome ' + username))
+      setTimeout(() => {
+        dispatch(setNotification(''))
+      }, 3000)
     } catch (exception) {
       console.error('wrong credentials')
       dispatch(setNotification('wrong credentials'))
