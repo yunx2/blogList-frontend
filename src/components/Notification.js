@@ -6,11 +6,20 @@ const Notification = () => {
   const message = useSelector(state => state.notification)
   // console.log(message)
   if (message) {
-    return (
-      <Alert variant="success" className="error">
-        {message}
-      </Alert>
-    )
+    if (message.includes('welcome')) {
+      return (
+        <Alert variant="success">
+          {message}
+        </Alert>
+      )
+    }
+    if (message.includes('wrong')) {
+      return(
+        <Alert variant="danger">
+          {message}
+        </Alert>
+      )
+    }
   }
   return null
 }
