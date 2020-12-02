@@ -12,23 +12,15 @@ const LoginForm = () => {
 
   const handleLogin = async e => { // needs to dispatch action to LoginReducer
     e.preventDefault()
-    try {
-      const credentials = {
-        username,
-        password
-      }
-      dispatch(authenticateUser(credentials))
-      dispatch(setNotification('welcome ' + username))
-      setTimeout(() => {
-        dispatch(setNotification(''))
-      }, 3000)
-    } catch (exception) {
-      console.error('wrong credentials')
-      dispatch(setNotification('wrong credentials'))
-      setTimeout(() => {
-        dispatch(setNotification(''))
-      }, 5000)
+    const credentials = {
+      username,
+      password
     }
+    dispatch(authenticateUser(credentials))
+    // dispatch(setNotification('welcome ' + username))
+    // setTimeout(() => {
+    //   dispatch(setNotification(''))
+    // }, 3000)
   }
 
   return (

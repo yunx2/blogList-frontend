@@ -1,5 +1,8 @@
+import { useDispatch } from 'react-redux';
+
 import { login } from '../services/login'
-import { setToken } from '../services/blogs'
+import { setToken } from '../services/blogs';
+import { setNotification } from './notificationReducer'
 
 const loggedInUserReducer = (state = null, action) => {
   switch (action.type) {
@@ -40,11 +43,19 @@ export const authenticateUser = userCredentials => {
           type: 'LOGIN_SUCCESS',
           data: userInfo
         })
+        dispatch(setNotification('welcome ' + userInfo.name))
+        setTimeout(() => {
+          dispatch(setNotification(''))
+        }, 3000)
       })
       .catch(err => {
         dispatch({
           type: 'LOGIN_FAIL',
         })
+        dispatch(setNotification('wrong credentials'));
+        setTimeout(() => {
+          dispatch(setNotification(''))
+        }, 3000)
       })
   }
 }
