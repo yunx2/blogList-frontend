@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux';
 import { Form, Button } from 'react-bootstrap';
 
-import { setLoggedInUserInfo } from '../reducers/loggedInUserReducer'
+import { authenticateUser } from '../reducers/loggedInUserReducer'
 import { setNotification } from '../reducers/notificationReducer'
 
 const LoginForm = () => {
@@ -17,7 +17,7 @@ const LoginForm = () => {
         username,
         password
       }
-      dispatch(setLoggedInUserInfo(credentials))
+      dispatch(authenticateUser(credentials))
       dispatch(setNotification('welcome ' + username))
       setTimeout(() => {
         dispatch(setNotification(''))

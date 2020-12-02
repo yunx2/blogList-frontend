@@ -18,7 +18,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 const App = () => {
   const user = useSelector(state => state.loggedInUser)
-
   const dispatch = useDispatch() // useDispatch is a React hook from react-redux library
 
   useEffect(() => {
@@ -30,7 +29,7 @@ const App = () => {
     // console.log('loggedUserJSON:', loggedUserJSON )
     if (loggedUserJSON) {
       const userCredentials = JSON.parse(loggedUserJSON)
-      // console.log('parsed: ', userCredentials)
+      console.log('parsed: ', userCredentials)
       dispatch(setFromLocalStorage(userCredentials))
       setToken(userCredentials.token)
     }
