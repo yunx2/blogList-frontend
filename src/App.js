@@ -59,13 +59,11 @@ const App = () => {
             <User />
           </Route>
           <Route path="/users">
-            <h1>blogs</h1>
             <UsersList />
           </Route>
           <Route path="/">
             {user === null ? <LoginForm /> :
               (<div id="content">
-                <h1>blogs</h1>
                 {addForm()}
                 <BlogList />
               </div>)

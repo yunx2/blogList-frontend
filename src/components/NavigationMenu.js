@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Nav, Button } from 'react-bootstrap';
+import { Navbar, Nav, Button, Form } from 'react-bootstrap';
 
 const NavigationMenu = ({ handleLogout, user }) => {
   // const padding = { padding: 5 }
@@ -10,24 +10,44 @@ const NavigationMenu = ({ handleLogout, user }) => {
     return null
   }
   return (
-    <Nav as="ul">
-      <Nav.Item as="li">
-        <Nav.Link as="span">
-          <Link to="/">home</Link>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item as="li">
-        <Nav.Link as="span">
-          <Link to="/users">users</Link>
-        </Nav.Link>
-      </Nav.Item>
-      <Nav.Item as="li">
-        <span>{user.name} logged in</span>
-      </Nav.Item>
-      <Nav.Item>
-        <Button variant="primary" onClick={handleLogout}>log out</Button>
-      </Nav.Item>
-    </Nav>
+  // <Navbar expand="lg" bg="light">
+  //   <Navbar.Collapse>
+  //   <Navbar.Brand>Favorite Blogs App</Navbar.Brand>
+  //   <Nav.Item as="li">
+  //     <Nav.Link as="span">
+  //       
+  //     </Nav.Link>
+  //   </Nav.Item>
+  //   <Nav.Item as="li">
+  //     <Nav.Link as="span">
+  //       
+  //     </Nav.Link>
+  //   </Nav.Item>
+  //   <Nav.Item as="li">
+  //     <span>{user.name} logged in</span>
+  //   </Nav.Item>
+  //   <Nav.Item>
+  //     <Button variant="primary" onClick={handleLogout}>log out</Button>
+  //   </Nav.Item>
+  // </Nav
+  //   </Navbar.Collapse>
+  //   <Nav>
+  // >
+
+    // </Navbar>
+    <Navbar bg="light" expand="lg">
+      <Navbar.Brand>Favorite Blogs</Navbar.Brand>
+      <Navbar.Collapse>
+        <Nav>
+          <Nav.Link><Link to="/">home</Link></Nav.Link>
+          <Nav.Link><Link to="/users">users</Link></Nav.Link>
+        </Nav>
+        <Form inline>
+          <Button variant="primary" onClick={handleLogout}>logout</Button>
+        </Form>
+
+      </Navbar.Collapse>
+    </Navbar>
   )
 }
 
