@@ -5,7 +5,8 @@ import { Button, Form } from 'react-bootstrap';
 
 import { likeBlog, deleteById } from '../reducers/blogsReducer'
 import CommentsList from './CommentsList'
-import CommentForm from './CommentForm'
+import CommentForm from './CommentForm';
+import Togglable from './Togglable';
 
 const BlogView = () => {
   const dispatch = useDispatch()
@@ -22,6 +23,11 @@ const BlogView = () => {
 
   if (blog) {
     // console.log('number of comments', blog.comments.length)
+    const commentForm = () => (
+      <Togglable buttonLabel="add comment">
+        <CommentForm blog={blog} />
+      </Togglable>
+    )
     return (
       <div>
         <h2>{blog.title}</h2>
@@ -36,7 +42,7 @@ const BlogView = () => {
           </Form.Group>
         </Form>
         added by {blog.user.name}
-        <CommentForm blog={blog} />
+        {commentForm()}
         <CommentsList comments={blog.comments} />
       </div>
     )
